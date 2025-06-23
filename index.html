@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para María 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('https://i.pinimg.com/originals/77/7b/f1/777bf1fa32851a3a3f9375895b90fccc.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      font-family: 'Quicksand', sans-serif;
+      text-align: center;
+      padding: 40px;
+      color: #fff;
+      text-shadow: 1px 1px 3px #000;
+      overflow: hidden;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #ffc0cb;
+    }
+
+    .mensaje {
+      font-size: 18px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: 20px auto;
+      line-height: 1.6;
+    }
+
+    button {
+      background-color: #ff66a3;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 25px;
+      margin: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      position: relative;
+    }
+
+    button:hover {
+      background-color: #ff3385;
+      transform: scale(1.05);
+    }
+
+    #pregunta {
+      display: none;
+      margin-top: 30px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .respuesta {
+      font-size: 24px;
+      margin-top: 30px;
+      color: #ffe6f0;
+    }
+
+    img {
+      max-width: 200px;
+      margin-top: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px #fff;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .no {
+      position: absolute;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💌 Hola María</h1>
+
+  <p class="mensaje">
+    Deseo hacerte una pregunta...<br><br>
+    Pero primero déjame decirte algo: <br><br>
+    Eres super dulce :3 🥰<br>
+    Me encantó haberte conocido, y quiero que todo siga fluyendo 🌸<br>
+    Me encanta pasar tiempo contigo, hablar contigo y descubrir lo linda que eres por dentro y por fuera 💕<br>
+    Haces mis días más bonitos solo con tu forma de ser...<br>
+  </p>
+
+  <button onclick="mostrarPregunta()">💌 Ver la pregunta</button>
+
+  <div id="pregunta">
+    <h2>¿Quieres ser mi enamorada, María? 💖</h2>
+    <button class="si" onclick="responder(true)">💖 Sí 💖</button>
+    <button class="no" id="btnNo" onmouseover="moverBoton()">No 😅</button>
+  </div>
+
+  <div class="respuesta" id="respuesta"></div>
+
+  <img src="https://media2.giphy.com/media/vB6GQ7Ogc6j4I/giphy.gif" alt="Romantic GIF">
+
+  <!-- SoundCloud (música de fondo, oculta) -->
+ <audio id="miAudio" loop>
+  <source src="music/m.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio HTML5.
+</audio>
+
+<button onclick="document.getElementById('miAudio').play()">▶ Reproducir música</button>
+
+
+  <script src="https://w.soundcloud.com/player/api.js"></script>
+  <script>
+    const iframe = document.getElementById('soundcloud-player');
+    const widget = SC.Widget(iframe);
+
+    widget.bind(SC.Widget.Events.READY, () => widget.play());
+    widget.bind(SC.Widget.Events.FINISH, () => {
+      widget.seekTo(0);
+      widget.play();
+    });
+  </script>
+
+  <script>
+    function mostrarPregunta() {
+      document.getElementById('pregunta').style.display = 'block';
+    }
+
+    function responder(acepta) {
+      const respuesta = document.getElementById('respuesta');
+      if (acepta) {
+        respuesta.innerHTML = '<h3>Owww cosita linda 🥺💖 Me siento muy feliz al saber tu respuesta 😍</h3>';
+      } else {
+        respuesta.innerHTML = '<h3>😳 A nalgas... jajaja igual te aprecio 😅</h3>';
+      }
+    }
+
+    function moverBoton() {
+      const botonNo = document.getElementById('btnNo');
+      const maxX = window.innerWidth - botonNo.offsetWidth;
+      const maxY = window.innerHeight - botonNo.offsetHeight;
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      botonNo.style.left = `${randomX}px`;
+      botonNo.style.top = `${randomY}px`;
+    }
+  </script>
+
+</body>
+</html>
